@@ -1,0 +1,91 @@
+service: bonzai-booking-api
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: eu-north-1
+  stage: dev
+  environment:
+    TABLE_NAME: ${self:service}-${sls:stage}-bookings
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+        - dynamodb:GetItem
+        - dynamodb:DeleteItem
+        - dynamodb:Scan
+      Resource:
+        - arn:aws:dynamodb:${aws:region}:*:table/${self:provider.environment.TABLE_NAME}
+
+plugins:
+  - serverless-offline
+  - serverless-dynamodb-local
+
+custom:
+  dynamodb:
+    stages:
+      - dev
+    start:
+      port: 8000
+      inMemory: true
+      migrate: true
+
+functions:
+  createBooking:
+    handler: src/handlers/bookings.create
+    events:
+      - http:
+          path: bookings
+          method: post
+          cors: true
+  getBooking:
+    handler: src/handlers/bookings.getOne
+    events:
+      - http:
+          path: bookings/{id}
+          method: get
+          cors: true
+  listBookings:
+    handler: src/handlers/bookings.listAll
+    events:
+      - http:
+          path: bookings
+          method: get
+          cors: true
+  deleteBooking:
+    handler: src/handlers/bookings.remove
+    events:
+      - http:
+          path: bookings/{id}
+          method: delete
+          cors: true
+  getRules:
+    handler: src/handlers/rooms.getRules
+    events:
+      - http:
+          path: rooms/rules
+          method: get
+          cors: true
+
+  updateBooking:
+    handler: src/handlers/bookings.update
+    events:
+      - http:
+          path: bookings/{id}
+          method: put
+          cors: true
+
+resources:
+  Resources:
+    BookingsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.TABLE_NAME}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH

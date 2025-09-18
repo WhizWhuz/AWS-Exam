@@ -1,0 +1,170 @@
+{
+	"info": {
+		"_postman_id": "4e8fb154-e0f5-43a8-b1c8-0d64345f8453",
+		"name": "Exam",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43559276"
+	},
+	"item": [
+		{
+			"name": "Booking Rooms",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"guests\": 3,\r\n  \"nights\": 2,\r\n  \"rooms\": [\r\n    { \"type\": \"single\", \"count\": 1 },\r\n    { \"type\": \"double\", \"count\": 1 }\r\n  ],\r\n  \"contact\": { \"name\": \"Jesper\", \"email\": \"jesper@gov.uk.com\" }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://planfvbql2.execute-api.eu-north-1.amazonaws.com/dev/bookings",
+					"protocol": "https",
+					"host": [
+						"planfvbql2",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"bookings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show Bookings",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://planfvbql2.execute-api.eu-north-1.amazonaws.com/dev/bookings",
+					"protocol": "https",
+					"host": [
+						"planfvbql2",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"bookings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show one Booking",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://planfvbql2.execute-api.eu-north-1.amazonaws.com/dev/bookings/<id>",
+					"protocol": "https",
+					"host": [
+						"planfvbql2",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"bookings",
+						"<id>"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Booking",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://planfvbql2.execute-api.eu-north-1.amazonaws.com/dev/bookings/<id>",
+					"protocol": "https",
+					"host": [
+						"planfvbql2",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"bookings",
+						"<id>"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show Rules",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://planfvbql2.execute-api.eu-north-1.amazonaws.com/dev/rooms/rules",
+					"protocol": "https",
+					"host": [
+						"planfvbql2",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"rooms",
+						"rules"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Room",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"guests\": 6,\r\n  \"nights\": 2,\r\n  \"rooms\": [\r\n    { \"type\": \"double\", \"count\": 1 }\r\n  ],\r\n  \"contact\": { \"name\": \"Charles Beardaugther\", \"email\": \"kalle@gov.uk.com\" }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://planfvbql2.execute-api.eu-north-1.amazonaws.com/dev/bookings/<id>",
+					"protocol": "https",
+					"host": [
+						"planfvbql2",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"bookings",
+						"<id>"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

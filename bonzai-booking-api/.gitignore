@@ -1,0 +1,13 @@
+node_modules/
+npm-debug.log
+yarn-error.log
+
+.serverless
+*.zip
+
+.vscode/
+.DS_Store
+*.swp
+
+temp/
+undefined/
